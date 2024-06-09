@@ -19,12 +19,17 @@
               We makes every day full of energy and taste
             </div>
             <div class="preview__subtitle">Want to try our beans?</div>
-            <a href="./coffeepage.html" class="preview__btn">More</a>
+            <a
+              href="./coffeepage.html"
+              class="preview__btn"
+              @click.prevent="smoothScroll"
+              >More</a
+            >
           </div>
         </div>
       </div>
     </div>
-    <section class="about">
+    <section class="about" id="about" ref="about">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 offset-lg-3">
@@ -55,27 +60,17 @@
     </section>
     <section class="best">
       <div class="container">
-        <div class="title">Our best</div>
+        <div class="title" ref="ourBest">Our best</div>
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
             <div class="best__wrapper">
               <product-card
+                v-for="card in bestsellers"
+                :key="card.id"
                 classItem="best__item"
-                :name="bestsellers[0].name"
-                :price="bestsellers[0].price"
-                :image="bestsellers[0].image"
-              />
-              <product-card
-                classItem="best__item"
-                :name="bestsellers[1].name"
-                :price="bestsellers[1].price"
-                :image="bestsellers[1].image"
-              />
-              <product-card
-                classItem="best__item"
-                :name="bestsellers[2].name"
-                :price="bestsellers[2].price"
-                :image="bestsellers[2].image"
+                :name="card.name"
+                :price="card.price"
+                :image="card.image"
               />
             </div>
           </div>
@@ -113,6 +108,14 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    smoothScroll() {
+      this.$refs.ourBest.scrollIntoView({
+        block: "start",
+        behavior: "smooth",
+      });
+    },
   },
 };
 </script>
