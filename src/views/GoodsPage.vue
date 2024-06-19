@@ -52,46 +52,9 @@
                 v-for="card in goods"
                 :key="card.id"
                 classItem="shop__item"
-                :name="card.name"
-                :price="card.price"
-                :image="card.image"
+                :card="card"
+                @onNavigate="navigate"
               />
-              <!-- <div class="shop__item">
-                <img src="./img/good-1.jpg" alt="coffee" />
-                <div class="shop__item-title">Solimo Coffee Beans 2kg</div>
-                <div class="shop__item-country">Brazil</div>
-                <div class="shop__item-price">10.73$</div>
-              </div>
-              <div class="shop__item">
-                <img src="./img/good-1.jpg" alt="coffee" />
-                <div class="shop__item-title">Presto Coffee Beans 1kg</div>
-                <div class="shop__item-country">Brazil</div>
-                <div class="shop__item-price">15.99$</div>
-              </div>
-              <div class="shop__item">
-                <img src="./img/good-1.jpg" alt="coffee" />
-                <div class="shop__item-title">AROMISTICO Coffee 1kg</div>
-                <div class="shop__item-country">Brazil</div>
-                <div class="shop__item-price">6.99$</div>
-              </div>
-              <div class="shop__item">
-                <img src="./img/good-1.jpg" alt="coffee" />
-                <div class="shop__item-title">Solimo Coffee Beans 2kg</div>
-                <div class="shop__item-country">Brazil</div>
-                <div class="shop__item-price">10.73$</div>
-              </div>
-              <div class="shop__item">
-                <img src="./img/good-1.jpg" alt="coffee" />
-                <div class="shop__item-title">Solimo Coffee Beans 2kg</div>
-                <div class="shop__item-country">Brazil</div>
-                <div class="shop__item-price">10.73$</div>
-              </div>
-              <div class="shop__item">
-                <img src="./img/good-1.jpg" alt="coffee" />
-                <div class="shop__item-title">Solimo Coffee Beans 2kg</div>
-                <div class="shop__item-country">Brazil</div>
-                <div class="shop__item-price">10.73$</div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -102,49 +65,19 @@
 <script>
 import NavBarComponent from "@/components/NavBarComponent.vue";
 import ProductCard from "@/components/ProductCard.vue";
+import { navigate } from "../mixins/navigate";
 export default {
   components: { NavBarComponent, ProductCard },
+  computed: {
+    goods() {
+      return this.$store.getters["getGoods"];
+    },
+  },
   data() {
     return {
-      goods: [
-        {
-          id: 0,
-          name: "Solimo Coffee Beans 2kg",
-          price: 10.73,
-          image: "coffee-1.jpg",
-        },
-        {
-          id: 1,
-          name: "Presto Coffee Beans 1kg",
-          price: 15.99,
-          image: "coffee-2.jpg",
-        },
-        {
-          id: 2,
-          name: "AROMISTICO Coffee 1kg",
-          price: 6.99,
-          image: "coffee-3.jpg",
-        },
-        {
-          id: 3,
-          name: "Solimo Coffee Beans 2kg",
-          price: 10.73,
-          image: "coffee-1.jpg",
-        },
-        {
-          id: 4,
-          name: "Presto Coffee Beans 1kg",
-          price: 15.99,
-          image: "coffee-2.jpg",
-        },
-        {
-          id: 5,
-          name: "AROMISTICO Coffee 1kg",
-          price: 6.99,
-          image: "coffee-3.jpg",
-        },
-      ],
+      name: "goods",
     };
   },
+  mixins: [navigate],
 };
 </script>

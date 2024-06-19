@@ -21,33 +21,10 @@
 import NavItem from "@/components/NavItem";
 export default {
   components: { NavItem },
-  data() {
-    return {
-      links: {
-        header: {
-          id: 0,
-          link: "/",
-          icon: "Logo.svg",
-        },
-        other: [
-          {
-            id: 1,
-            text: "Our coffee",
-            link: "/our-coffee",
-          },
-          {
-            id: 2,
-            text: "For your pleasure",
-            link: "/goods-page",
-          },
-          {
-            id: 3,
-            text: "Contact us",
-            link: "/contact-us",
-          },
-        ],
-      },
-    };
+  computed: {
+    links() {
+      return this.$store.getters["getHeaderLinks"];
+    },
   },
 };
 </script>
