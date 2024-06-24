@@ -31,12 +31,15 @@
                 </div>
                 <div class="col col-12 col-sm-9">
                   <input
-                    v-model="form.name"
+                    v-model="name"
                     type="text"
                     class="form-control"
                     id="name-input"
                   />
                 </div>
+                <pre>
+                  {{ v$ }}
+                </pre>
               </div>
 
               <div class="form-group row">
@@ -48,7 +51,7 @@
                 </div>
                 <div class="col col-12 col-sm-9">
                   <input
-                    v-model="form.email"
+                    v-model="email"
                     type="email"
                     class="form-control"
                     id="email-input"
@@ -62,7 +65,7 @@
                 </div>
                 <div class="col col-12 col-sm-9">
                   <input
-                    v-model="form.phone"
+                    v-model="phone"
                     type="tel"
                     class="form-control"
                     id="phone-input"
@@ -79,7 +82,7 @@
                 </div>
                 <div class="col col-12">
                   <textarea
-                    v-model="form.message"
+                    v-model="message"
                     class="form-control"
                     name="message"
                     id="message"
@@ -104,22 +107,31 @@
 <script>
 import NavBarComponent from "@/components/NavBarComponent.vue";
 import ProductCard from "@/components/ProductCard.vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
 export default {
+  setup() {
+    return { v$: useVuelidate() };
+  },
   data() {
     return {
-      form: {
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-      },
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
     };
   },
   components: { NavBarComponent, ProductCard },
+  validations() {
+    return {
+      name: { required },
+      email: { required, email },
+      phone: { required },
+      message: {},
+    };
+  },
   methods: {
-    submit() {
-      console.log(this.form);
-    },
+    submit() {},
   },
 };
 </script>
