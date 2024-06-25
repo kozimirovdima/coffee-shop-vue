@@ -151,6 +151,20 @@ export default {
       // you can show some extra alert to the user or just leave the each field to show it's `$errors`.
       if (!isFormCorrect) return;
       // actually submit form
+      const message = {
+        name: this.name,
+        email: this.email,
+        phone: this.phone,
+        message: this.message,
+      };
+
+      fetch("http://localhost:3000/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      });
     },
   },
 };

@@ -10,18 +10,19 @@
             <nav-bar-component />
           </div>
         </div>
-        <h1 class="title-big">{{ card.name }}</h1>
+        <h1 class="title-big">{{ product.name }}</h1>
       </div>
     </div>
 
     <section class="shop">
       <div class="container">
         <div class="row">
-          <div class="col-lg-5 offset-1">
+          <div class="col-lg-5 offset-0 offset-1">
             <img
               class="shop__girl"
-              :src="require(`@/assets/img/${card.image}`)"
               alt="coffee_item"
+              :src="product.image"
+              style="width: 100%"
             />
           </div>
           <div class="col-lg-4">
@@ -33,20 +34,15 @@
             />
             <div class="shop__point">
               <span>Country:</span>
-              Brazil
+              {{ product.country }}
             </div>
             <div class="shop__point">
               <span>Description:</span>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              {{ product.description }}
             </div>
             <div class="shop__point">
               <span>Price: </span>
-              <span class="shop__point-price">{{
-                card.price | addCurrency
-              }}</span>
+              <span class="shop__point-price">{{ product.price }}</span>
             </div>
           </div>
         </div>
@@ -89,7 +85,28 @@ import NavBarComponent from "@/components/NavBarComponent.vue";
 
 export default {
   components: { NavBarComponent },
-
+  data() {
+    return {
+      product: {
+        id: 0,
+        price: "",
+        name: "",
+        image: "",
+        country: "",
+        description: "",
+      },
+    };
+  },
+  mounted() {
+    fetch(`http://localhost:3000/coffee/${this.$route.params.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        this.product = data;
+      });
+  },
+  destroyed() {
+    this.product = null;
+  },
   computed: {
     pageName() {
       return this.$route.name;
