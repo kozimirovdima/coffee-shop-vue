@@ -6,18 +6,9 @@
 </template>
 
 <script>
-// import FirstComponent from "./components/FirstComponent.vue";
-import HeroView from "@/views/HeroView.vue";
-import FooterComponent from "@/components/FooterComponent.vue";
+import MainView from "./views/MainView.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 export default {
-  components: { HeroView, FooterComponent },
+  components: { MainView, FooterComponent },
 };
 </script>
-
-<style lang="scss" scoped>
-div {
-  span {
-    color: blue;
-  }
-}
-</style>

@@ -1,41 +1,43 @@
+import { v4 as uuidv4 } from "uuid";
+
 const coffee = {
   state: {
     coffee: [
       {
-        id: 0,
+        id: uuidv4(),
+        image: "coffee-1.jpg",
         name: "Solimo Coffee Beans 2kg",
         price: 10.73,
-        image: "coffee-1.jpg",
       },
       {
-        id: 1,
+        id: uuidv4(),
+        image: "coffee-2.jpg",
         name: "Presto Coffee Beans 1kg",
         price: 15.99,
-        image: "coffee-2.jpg",
       },
       {
-        id: 2,
+        id: uuidv4(),
+        image: "coffee-3.jpg",
         name: "AROMISTICO Coffee 1kg",
         price: 6.99,
-        image: "coffee-3.jpg",
       },
       {
-        id: 3,
+        id: uuidv4(),
+        image: "coffee-1.jpg",
         name: "Solimo Coffee Beans 2kg",
         price: 10.73,
-        image: "coffee-1.jpg",
       },
       {
-        id: 4,
+        id: uuidv4(),
+        image: "coffee-2.jpg",
         name: "Presto Coffee Beans 1kg",
         price: 15.99,
-        image: "coffee-2.jpg",
       },
       {
-        id: 5,
+        id: uuidv4(),
+        image: "coffee-3.jpg",
         name: "AROMISTICO Coffee 1kg",
         price: 6.99,
-        image: "coffee-3.jpg",
       },
     ],
   },
@@ -53,11 +55,12 @@ const coffee = {
     getCoffee(state) {
       return state.coffee;
     },
-    getProductById(state) {
+    getCoffeeById(state) {
       return (id) => {
-        return state.coffee.find((card) => card.id === +id);
+        return state.coffee.find((card) => card.id === id); // Убедитесь, что сравнение строк
       };
     },
   },
 };
+
 export default coffee;

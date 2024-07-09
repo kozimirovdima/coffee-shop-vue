@@ -1,30 +1,32 @@
+import { v4 as uuidv4 } from "uuid";
+
 const links = {
   state: {
     header: {
-      id: 0,
+      id: uuidv4(),
       link: "/",
       icon: "Logo.svg",
     },
     footer: {
-      id: 0,
+      id: uuidv4(),
       link: "/",
       icon: "Logo_black.svg",
     },
     other: [
       {
-        id: 1,
+        id: uuidv4(),
         text: "Our coffee",
         link: "/our-coffee",
       },
       {
-        id: 2,
+        id: uuidv4(),
         text: "For your pleasure",
-        link: "/goods-page",
+        link: "/goods",
       },
       {
-        id: 3,
-        text: "Contact us",
-        link: "/contact-us",
+        id: uuidv4(),
+        text: "Contact Us",
+        link: "/contacts",
       },
     ],
   },

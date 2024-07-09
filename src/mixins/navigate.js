@@ -4,7 +4,4 @@ export const navigate = {
       this.$router.push({ name: this.name, params: { id: id } });
     },
   },
-  mounted() {
-    console.log("from mixin");
-  },
 };
